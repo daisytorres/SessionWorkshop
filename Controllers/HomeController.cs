@@ -28,9 +28,11 @@ public class HomeController : Controller
     public IActionResult CreateUser(User newUser)
     {
         if (ModelState.IsValid)
+        {
             HttpContext.Session.SetString("Name", newUser.Name); //first parameter is the key and then the value
-        HttpContext.Session.SetInt32("Num", newUser.Num); //first parameter is the key and then the value
         return RedirectToAction("Dashboard");
+        }
+        return View("Index"); 
     }
 
 
@@ -39,7 +41,11 @@ public class HomeController : Controller
     public IActionResult Dashboard()
     {
         string? Name = HttpContext.Session.GetString("Name");
-        int? Num = HttpContext.Session.GetInt32("Num");
+        if (Name == null) 
+        {
+            return RedirectToAction("Index");
+        }
+        // string Name = HttpContext.Session.GetString("Name"); //move this above if statement + make null & instan it
         // Console.WriteLine($"{Name}");
         return View("Dashboard");
     }

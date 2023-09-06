@@ -4,7 +4,6 @@ namespace SessionWorkshop.Models;
 
 public class User 
 {
-    [Required]
+    [Required(ErrorMessage = "Name is requried 🤠")]
     public string Name {get;set;}
-    public int Num {get;set;}
 }
