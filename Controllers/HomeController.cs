@@ -30,6 +30,7 @@ public class HomeController : Controller
         if (ModelState.IsValid)
         {
             HttpContext.Session.SetString("Name", newUser.Name); //first parameter is the key and then the value
+        HttpContext.Session.SetInt32("Num", newUser.Num);
         return RedirectToAction("Dashboard");
         }
         return View("Index"); 
@@ -47,6 +48,7 @@ public class HomeController : Controller
         }
         // string Name = HttpContext.Session.GetString("Name"); //move this above if statement + make null & instan it
         // Console.WriteLine($"{Name}");
+        int? Num = HttpContext.Session.GetInt32("Num");
         return View("Dashboard");
     }
 
@@ -65,10 +67,8 @@ public class HomeController : Controller
     public IActionResult PlusOne()
     {
         int? num = HttpContext.Session.GetInt32("Num");
-        {
             num += 1;
             HttpContext.Session.SetInt32("Num", num.Value);
-        }
         return RedirectToAction("Dashboard");
     }
 
@@ -78,11 +78,9 @@ public class HomeController : Controller
     public IActionResult MinusOne()
     {
         int? num = HttpContext.Session.GetInt32("Num");
-        {
             num -= 1;
             HttpContext.Session.SetInt32("Num", num.Value);
-        }
-        return RedirectToAction("Dashboard");
+            return RedirectToAction("Dashboard");
     }
 
 
@@ -91,10 +89,8 @@ public class HomeController : Controller
     public IActionResult MultiplyTwo()
     {
         int? num = HttpContext.Session.GetInt32("Num");
-        {
             num *= 2;
             HttpContext.Session.SetInt32("Num", num.Value);
-        }
         return RedirectToAction("Dashboard");
     }
 
@@ -104,12 +100,10 @@ public class HomeController : Controller
     public IActionResult PlusRandom()
     {
         int? num = HttpContext.Session.GetInt32("Num");
-        {
             Random random = new Random();
             int randomNumber = random.Next(1, 11);
             num += randomNumber;
             HttpContext.Session.SetInt32("Num", num.Value);
-        }
         return RedirectToAction("Dashboard");
     }
 

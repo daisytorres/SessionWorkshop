@@ -6,4 +6,5 @@ public class User
 {
     [Required(ErrorMessage = "Name is requried 🤠")]
     public string Name {get;set;}
+    public int Num {get;set;}
 }
