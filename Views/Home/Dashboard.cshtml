@@ -1,0 +1,51 @@
+﻿<h1>@ViewData["Title"]</h1>
+
+<style>
+    .custom-card {
+        border: 8px solid #ff1493;
+    }
+
+    .custom-header {
+        background-color: #ff69b4;
+        color: white;
+    }
+
+    .card-body
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    button{
+        background-color: #ff1493;
+        color: white;
+        margin-right: 10px;
+    }
+
+    
+</style>
+
+@model string 
+
+<div class="container mt-4">
+    <div class="card custom-card">
+        <div class="card-header custom-header text-center">
+            <h1>Welcome @Context.Session.GetString("Name")!</h1>
+        </div>
+        <div class="card-body">
+            <p>your number is: @Context.Session.GetInt32("Num") </p>
+            <div class="buttons" style="display: flex;">
+            <form action="dashboard/plusone" method="post"><button>+ 1</button></form>
+            <form action="dashboard/minusone" method="post"><button>- 1</button></form>
+            <form action="dashboard/multiplytwo" method="post"><button>x 2</button></form>
+            <form action="dashboard/random" method="post"><button>+ random</button></form>
+            </div>
+            <p></p>
+            <form action="reset" method="post">
+                <input type="submit" value="Log out" class="btn btn-secondary">
+            </form>
+        </div>
+    </div>
+</div>

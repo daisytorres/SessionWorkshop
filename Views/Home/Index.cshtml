@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<style>
+    .custom-card {
+        border: 8px solid #ff1493; 
+    }
+
+    .custom-header {
+        background-color: #ff69b4; 
+        color: white; 
+    }
+</style>
+
+
+
+@model User
+<div class="container mt-4">
+    <div class="card custom-card">
+        <div class="card-header custom-header text-center">
+            <h1 class="display-4">Welcome!</h1>
+        </div>
+        <div class="card-body">
+            <form asp-action="CreateUser" method="post">
+                <div class="mb-3">
+                    <label for="Name">Please give your name: </label>
+                    <input type="text" name="Name" class="form-control">
+                </div>
+                <input type="submit" value="Submit" class="btn btn-info">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
